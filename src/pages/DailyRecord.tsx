@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import {
   Search,
   Filter,
-  Calendar,
   Plus,
   Image,
   Tag,
@@ -12,7 +11,6 @@ import {
   ChevronDown,
   ChevronRight,
   CalendarDays,
-  BookOpen,
   Edit,
   Clock,
 } from 'lucide-react';
@@ -65,7 +63,6 @@ const mockCategories = [
 ];
 
 const DailyRecord: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('list');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('全部');
   const [showFilters, setShowFilters] = useState(false);

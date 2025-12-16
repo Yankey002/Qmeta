@@ -71,7 +71,7 @@ export function generateId(): string {
 }
 
 // 防抖函数
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => void>(
   func: T,
   wait: number
 ): (this: ThisParameterType<T>, ...args: Parameters<T>) => void {
@@ -89,7 +89,7 @@ export function debounce<T extends (...args: any[]) => any>(
 }
 
 // 节流函数
-export function throttle<T extends (...args: any[]) => any>(
+export function throttle<T extends (...args: unknown[]) => void>(
   func: T,
   limit: number
 ): (this: ThisParameterType<T>, ...args: Parameters<T>) => void {
@@ -109,7 +109,7 @@ export function isValidUrl(string: string): boolean {
   try {
     new URL(string);
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 }
@@ -118,7 +118,7 @@ export function isValidUrl(string: string): boolean {
 export function getHostnameFromUrl(url: string): string {
   try {
     return new URL(url).hostname;
-  } catch (error) {
+  } catch {
     return '';
   }
 }
