@@ -76,3 +76,4 @@ jobs:
           TARGET: /var/www/qmeta
           SOURCE: dist/
           EXCLUDE: '.git*,node_modules/**/*,.gitignore'
+          ARGS: "-rlgoDzvc -i --mkpath"
