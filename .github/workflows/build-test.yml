@@ -66,6 +66,14 @@ jobs:
           name: build-artifacts
           path: dist/
 
+      - name: Create target directory on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 82.156.100.175
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: mkdir -p /var/www/qmeta
+
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
         env:
@@ -76,4 +84,4 @@ jobs:
           TARGET: /var/www/qmeta
           SOURCE: dist/
           EXCLUDE: '.git*,node_modules/**/*,.gitignore'
-          ARGS: '-rlgoDzvc -i --mkpath'
+          ARGS: '-rlgoDzvc -i'
