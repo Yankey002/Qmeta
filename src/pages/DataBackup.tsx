@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Database, 
-  Upload, 
-  Download, 
-  Clock, 
-  CalendarDays, 
+import {
+  Database,
+  Upload,
+  Download,
+  Clock,
+  CalendarDays,
   Check,
   AlertCircle,
   MoreVertical,
   RefreshCw,
   Shield,
   Info,
-  Settings
+  Settings,
 } from 'lucide-react';
 import { Empty } from '@/components/Empty';
 import { toast } from 'sonner';
@@ -21,31 +21,31 @@ import { toast } from 'sonner';
 const mockBackups = [
   {
     id: 1,
-    name: "自动备份 - 2025-12-05",
-    date: "2025-12-05T14:30:00",
-    size: "12.5 MB",
-    type: "auto",
-    status: "completed",
-    entries: 156
+    name: '自动备份 - 2025-12-05',
+    date: '2025-12-05T14:30:00',
+    size: '12.5 MB',
+    type: 'auto',
+    status: 'completed',
+    entries: 156,
   },
   {
     id: 2,
-    name: "手动备份 - 2025-12-01",
-    date: "2025-12-01T10:15:00",
-    size: "11.8 MB",
-    type: "manual",
-    status: "completed",
-    entries: 148
+    name: '手动备份 - 2025-12-01',
+    date: '2025-12-01T10:15:00',
+    size: '11.8 MB',
+    type: 'manual',
+    status: 'completed',
+    entries: 148,
   },
   {
     id: 3,
-    name: "自动备份 - 2025-11-25",
-    date: "2025-11-25T14:30:00",
-    size: "10.2 MB",
-    type: "auto",
-    status: "completed",
-    entries: 132
-  }
+    name: '自动备份 - 2025-11-25',
+    date: '2025-11-25T14:30:00',
+    size: '10.2 MB',
+    type: 'auto',
+    status: 'completed',
+    entries: 132,
+  },
 ];
 
 const DataBackup: React.FC = () => {
@@ -61,26 +61,26 @@ const DataBackup: React.FC = () => {
       month: '2-digit',
       day: '2-digit',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     });
   };
 
   // 处理创建备份
   const handleCreateBackup = () => {
     setIsBackingUp(true);
-    
+
     // 模拟备份过程
     setTimeout(() => {
       const newBackup = {
         id: backups.length + 1,
-        name: "手动备份 - " + new Date().toLocaleDateString('zh-CN'),
+        name: '手动备份 - ' + new Date().toLocaleDateString('zh-CN'),
         date: new Date().toISOString(),
-        size: (Math.random() * 5 + 10).toFixed(1) + " MB",
-        type: "manual",
-        status: "completed",
-        entries: Math.floor(Math.random() * 50) + 100
+        size: (Math.random() * 5 + 10).toFixed(1) + ' MB',
+        type: 'manual',
+        status: 'completed',
+        entries: Math.floor(Math.random() * 50) + 100,
       };
-      
+
       setBackups([newBackup, ...backups]);
       setIsBackingUp(false);
       toast.success('备份创建成功！');
@@ -102,7 +102,7 @@ const DataBackup: React.FC = () => {
   // 处理删除备份
   const handleDeleteBackup = (id: number) => {
     if (window.confirm('确定要删除该备份吗？此操作不可恢复。')) {
-      setBackups(backups.filter(backup => backup.id !== id));
+      setBackups(backups.filter((backup) => backup.id !== id));
       toast.success('备份已删除！');
     }
   };
@@ -117,12 +117,12 @@ const DataBackup: React.FC = () => {
       {/* 顶部导航栏 */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
         <h1 className="text-2xl font-bold text-gray-800 dark:text-white">数据备份与恢复</h1>
-        
+
         <div className="flex flex-wrap gap-2">
-          <button 
+          <button
             className={`px-4 py-2 rounded-lg transition-colors ${
-              isBackingUp 
-                ? 'bg-blue-400 text-white cursor-not-allowed' 
+              isBackingUp
+                ? 'bg-blue-400 text-white cursor-not-allowed'
                 : 'bg-blue-500 hover:bg-blue-600 text-white'
             } flex items-center`}
             onClick={handleCreateBackup}
@@ -146,20 +146,20 @@ const DataBackup: React.FC = () => {
       {/* 选项卡 */}
       <div className="border-b border-gray-200 dark:border-gray-700 mb-6">
         <div className="flex">
-          <button 
+          <button
             className={`py-3 px-5 font-medium ${
-              selectedTab === 'backups' 
-                ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400' 
+              selectedTab === 'backups'
+                ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
             } transition-colors`}
             onClick={() => setSelectedTab('backups')}
           >
             备份管理
           </button>
-          <button 
+          <button
             className={`py-3 px-5 font-medium ${
-              selectedTab === 'restore' 
-                ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400' 
+              selectedTab === 'restore'
+                ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-500 dark:border-blue-400'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
             } transition-colors`}
             onClick={() => setSelectedTab('restore')}
@@ -173,7 +173,7 @@ const DataBackup: React.FC = () => {
       {selectedTab === 'backups' && (
         <div className="space-y-6">
           {/* 自动备份设置卡片 */}
-          <motion.div 
+          <motion.div
             className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -186,10 +186,12 @@ const DataBackup: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-800 dark:text-white mb-1">自动备份设置</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">系统每7天自动创建备份，最多保留5个自动备份</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    系统每7天自动创建备份，最多保留5个自动备份
+                  </p>
                 </div>
               </div>
-              <button 
+              <button
                 className="px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors flex items-center"
                 onClick={handleAutoBackupSettings}
               >
@@ -203,7 +205,7 @@ const DataBackup: React.FC = () => {
           {backups.length > 0 ? (
             <div className="space-y-4">
               {backups.map((backup) => (
-                <motion.div 
+                <motion.div
                   key={backup.id}
                   className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                   initial={{ opacity: 0, y: 20 }}
@@ -214,16 +216,20 @@ const DataBackup: React.FC = () => {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <h3 className="font-medium text-gray-800 dark:text-white">{backup.name}</h3>
-                          <span className={`inline-flex items-center text-xs px-2 py-0.5 rounded-full ${
-                            backup.type === 'auto' 
-                              ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' 
-                              : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                          }`}>
+                          <h3 className="font-medium text-gray-800 dark:text-white">
+                            {backup.name}
+                          </h3>
+                          <span
+                            className={`inline-flex items-center text-xs px-2 py-0.5 rounded-full ${
+                              backup.type === 'auto'
+                                ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
+                                : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                            }`}
+                          >
                             {backup.type === 'auto' ? '自动' : '手动'}
                           </span>
                         </div>
-                        
+
                         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400 mb-3">
                           <div className="flex items-center">
                             <CalendarDays size={14} className="mr-1" />
@@ -234,30 +240,32 @@ const DataBackup: React.FC = () => {
                           {backup.type === 'auto' && <div>下次自动备份: 7天后</div>}
                         </div>
                       </div>
-                      
+
                       <div className="flex flex-col items-center ml-4">
-                        <div className={`w-20 h-8 flex items-center justify-center rounded-lg text-sm font-medium mb-2 ${
-                          backup.status === 'completed' 
-                            ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' 
-                            : 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
-                        }`}>
+                        <div
+                          className={`w-20 h-8 flex items-center justify-center rounded-lg text-sm font-medium mb-2 ${
+                            backup.status === 'completed'
+                              ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
+                              : 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
+                          }`}
+                        >
                           {backup.status === 'completed' ? '备份完成' : '备份中...'}
                         </div>
-                        
+
                         <div className="flex gap-1">
-                          <button 
+                          <button
                             className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400"
                             onClick={() => handleRestoreBackup(backup.id)}
                           >
                             <RefreshCw size={16} />
                           </button>
-                          <button 
+                          <button
                             className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400"
                             onClick={() => handleDownloadBackup(backup.id)}
                           >
                             <Download size={16} />
                           </button>
-                          <button 
+                          <button
                             className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400"
                             onClick={() => handleDeleteBackup(backup.id)}
                           >
@@ -280,7 +288,7 @@ const DataBackup: React.FC = () => {
       {selectedTab === 'restore' && (
         <div className="space-y-6">
           {/* 恢复说明 */}
-          <motion.div 
+          <motion.div
             className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50 rounded-xl p-5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -305,7 +313,7 @@ const DataBackup: React.FC = () => {
           {backups.length > 0 ? (
             <div className="space-y-4">
               {backups.map((backup) => (
-                <motion.div 
+                <motion.div
                   key={backup.id}
                   className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                   initial={{ opacity: 0, y: 20 }}
@@ -316,16 +324,20 @@ const DataBackup: React.FC = () => {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <h3 className="font-medium text-gray-800 dark:text-white">{backup.name}</h3>
-                          <span className={`inline-flex items-center text-xs px-2 py-0.5 rounded-full ${
-                            backup.type === 'auto' 
-                              ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' 
-                              : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                          }`}>
+                          <h3 className="font-medium text-gray-800 dark:text-white">
+                            {backup.name}
+                          </h3>
+                          <span
+                            className={`inline-flex items-center text-xs px-2 py-0.5 rounded-full ${
+                              backup.type === 'auto'
+                                ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
+                                : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                            }`}
+                          >
                             {backup.type === 'auto' ? '自动' : '手动'}
                           </span>
                         </div>
-                        
+
                         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400 mb-3">
                           <div className="flex items-center">
                             <CalendarDays size={14} className="mr-1" />
@@ -335,9 +347,9 @@ const DataBackup: React.FC = () => {
                           <div>包含 {backup.entries} 条记录</div>
                         </div>
                       </div>
-                      
+
                       <div className="flex flex-col items-center ml-4">
-                        <button 
+                        <button
                           className="px-4 py-1.5 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors mb-2"
                           onClick={() => handleRestoreBackup(backup.id)}
                         >
@@ -354,7 +366,7 @@ const DataBackup: React.FC = () => {
           )}
 
           {/* 从文件恢复 */}
-          <motion.div 
+          <motion.div
             className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm p-5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -363,7 +375,9 @@ const DataBackup: React.FC = () => {
             <h3 className="font-medium text-gray-800 dark:text-white mb-4">从本地文件恢复</h3>
             <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
               <Upload size={32} className="text-gray-400 mx-auto mb-3" />
-              <p className="text-gray-500 dark:text-gray-400 mb-4">拖放备份文件到此处，或点击选择文件</p>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">
+                拖放备份文件到此处，或点击选择文件
+              </p>
               <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors">
                 选择备份文件
               </button>

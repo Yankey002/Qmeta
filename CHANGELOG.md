@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - 初始项目结构搭建
 - React + TypeScript + Vite 技术栈
 - Tailwind CSS 样式框架
@@ -29,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - YYYY-MM-DD
 
 ### Added
+
 - 首次正式发布
 - 完整的功能模块
 - 后端API集成

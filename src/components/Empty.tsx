@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface EmptyProps {
   message?: string;
@@ -7,19 +7,12 @@ interface EmptyProps {
   className?: string;
 }
 
-export function Empty({ 
-  message = "暂无数据", 
-  icon = "fa-box-open", 
-  className = "" 
-}: EmptyProps) {
+export function Empty({ message = '暂无数据', icon = 'fa-box-open', className = '' }: EmptyProps) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      className={cn(
-        "flex flex-col items-center justify-center h-64 text-center",
-        className
-      )}
+      className={cn('flex flex-col items-center justify-center h-64 text-center', className)}
     >
       <div className="text-gray-300 dark:text-gray-600 text-5xl mb-4">
         <i className={`fa-solid ${icon}`}></i>
