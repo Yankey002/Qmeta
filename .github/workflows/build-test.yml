@@ -67,9 +67,10 @@ jobs:
           path: dist/
 
       - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@v4
-        with:
+        uses: easingthemes/ssh-deploy@main
+        env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        with:
           REMOTE_HOST: 82.156.100.175
           REMOTE_USER: root
           TARGET: /var/www/qmeta
