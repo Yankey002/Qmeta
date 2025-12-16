@@ -28,3 +28,7 @@ pnpm run dev
 ```
 
 - 在浏览器访问 http://localhost:3000
+
+## 更新日志
+
+- 2025-12-16: 修复GitHub Actions部署问题，配置SSH密钥认证
