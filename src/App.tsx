@@ -1,32 +1,36 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "@/pages/Home";
-import Login from "@/pages/Login";
-import DailyRecord from "@/pages/DailyRecord";
-import TodoList from "@/pages/TodoList";
-import LongTermPlan from "@/pages/LongTermPlan";
-import Reminder from "@/pages/Reminder";
-import WebsiteManager from "@/pages/WebsiteManager";
-import DataBackup from "@/pages/DataBackup";
-import UserSettings from "@/pages/UserSettings";
-import NotFound from "@/pages/NotFound";
-import { useState } from "react";
+import { Routes, Route } from 'react-router-dom';
+import Home from '@/pages/Home';
+import Login from '@/pages/Login';
+import DailyRecord from '@/pages/DailyRecord';
+import TodoList from '@/pages/TodoList';
+import LongTermPlan from '@/pages/LongTermPlan';
+import Reminder from '@/pages/Reminder';
+import WebsiteManager from '@/pages/WebsiteManager';
+import DataBackup from '@/pages/DataBackup';
+import UserSettings from '@/pages/UserSettings';
+import NotFound from '@/pages/NotFound';
+import { useState } from 'react';
 import { AuthContext } from '@/contexts/authContext';
 import { useTheme } from '@/hooks/useTheme';
 import { ThemeContext } from '@/contexts/themeContext';
-import Layout from "@/components/Layout";
+import Layout from '@/components/Layout';
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [user, setUser] = useState<{ id: string; username: string; email: string } | null>({
+    id: '1',
+    username: 'demo',
+    email: 'demo@example.com',
+  });
   const { theme, toggleTheme, isDark } = useTheme();
 
   const logout = () => {
     setIsAuthenticated(false);
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated, logout }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, logout, user, setUser }}>
       <ThemeContext.Provider value={{ theme, toggleTheme, isDark }}>
         <Routes>
           {!isAuthenticated ? (

@@ -6,8 +6,17 @@
   "scripts": {
     "dev:client": "vite --host --port 3000",
     "dev": "pnpm dev:client",
-    "build:client": "vite build --outDir dist/static",
-    "build": "rm -rf dist && pnpm build:client && cp package.json dist && touch dist/build.flag"
+    "build:client": "vite build --outDir dist/static --emptyOutDir",
+    "build": "pnpm build:client",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -22,14 +31,29 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "4.0.15",
+    "@vitest/ui": "^4.0.15",
     "autoprefixer": "^10.4.21",
+    "eslint": "^9.39.2",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.5.0",
+    "jsdom": "^27.3.0",
     "postcss": "^8.5.3",
+    "prettier": "^3.7.4",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.7.2",
     "vite": "^6.2.0",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^4.0.15"
   }
 }
